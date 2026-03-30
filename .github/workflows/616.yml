@@ -94,7 +94,7 @@ env:
 jobs:
   build-kernel:
     name: Nubia NX616J (LineageOS 22.2)
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     env:
       CCACHE_COMPILERCHECK: "%compiler% -dumpmachine; %compiler% -dumpversion"
       CCACHE_NOHASHDIR: "true"
@@ -103,13 +103,6 @@ jobs:
     steps:
       - name: ⏰ Checkout repository
         uses: actions/checkout@v4
-
-      - name: 🧽 Fix apt & remove broken local deb
-        run: |
-          sudo rm -f libtinfo5.deb
-          sudo apt-get clean
-          sudo apt-get update -o Acquire::CompressionTypes::Order::=gz
-          sudo apt-get install -y libtinfo5
 
       - name: ⌛️ Compilation environment preparation
         uses: ./.github/workflows/build-env

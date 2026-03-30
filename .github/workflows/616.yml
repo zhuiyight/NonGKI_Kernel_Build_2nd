@@ -49,6 +49,7 @@ env:
 
   ROM_TEXT : "lineageos_22.2"
 
+  # Other env
   PYTHON_VERSION: "3"
 
   PACK_METHOD: "Anykernel3"
@@ -106,7 +107,7 @@ jobs:
       - name: ⌛️ Compilation environment preparation
         uses: ./.github/workflows/build-env
 
-      - name: ⚙️ Get necessary tools
+      - name: ⚙️ Get neccssary tools
         uses: ./.github/workflows/build-ready
 
       - name: 🪝 Patch Kernel of SUSFS
@@ -117,6 +118,7 @@ jobs:
 
       - name: 🪛 Extra Kernel Options
         run: |
+          # Only ${{ env.DEVICE_NAME }} use it.
           cd $GITHUB_WORKSPACE/device_kernel
 
       - name: 🧰 Patch Kernel of Re:Kernel
